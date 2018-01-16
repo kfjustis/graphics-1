@@ -1,2 +1,5 @@
+#folders
+build/
+
 #files
 *.DS_Store

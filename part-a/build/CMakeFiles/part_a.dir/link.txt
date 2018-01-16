@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/part_a.dir/simple.cpp.o  -o part_a /usr/local/lib/libglfw.3.2.dylib /usr/local/lib/libGLEW.dylib -framework OpenGL 

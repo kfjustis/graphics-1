@@ -4,7 +4,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD)
 
 # create project
-project(graphics1)
+project(part_a)
 
 find_package(glfw3 REQUIRED)
 find_package(GLEW REQUIRED)
