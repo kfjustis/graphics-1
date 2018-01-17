@@ -12,12 +12,13 @@ GLuint vao;
 //----------------------------------------------------------------------------
 void init( void )
 {
-    
+
 	GLuint vert_shader, frag_shader;
 	/* GL shader programme object [combined, to link] */
 
-    // Specifiy the vertices for a triangle
-	GLfloat points[] = { -0.5, 0.5, 0.5, 0.5, 0.0, -0.5 };
+    // Specifiy the vertices for a rectangle
+	GLfloat points[] = { -0.5, 0.5, 0.5, 0.5, -0.5, -0.5,
+                        0.5, 0.5, -0.5, -0.5, 0.5, -0.5};
 
 
     // Create and initialize a buffer object
@@ -27,7 +28,6 @@ void init( void )
     glBufferData( GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW );
 
 	// Create a vertex array object
-
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 	glEnableVertexAttribArray(0);
@@ -48,7 +48,7 @@ void init( void )
 	const char *fragment_shader = "#version 410\n"
 		"out vec4 FragColor;"
 		"void main () {"
-		"	FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );"
+		"	FragColor = vec4( 1.0, 0.0, 0.0, 1.0);"
 		"}";
 
 	vert_shader = glCreateShader(GL_VERTEX_SHADER);
@@ -61,8 +61,6 @@ void init( void )
 	glAttachShader(shader_programme, frag_shader);
 	glAttachShader(shader_programme, vert_shader);
 	glLinkProgram(shader_programme);
-
-
 }
 
 
@@ -85,12 +83,10 @@ int main( int argc, char **argv )
 	Remove the #ifdef #endif and play around with this - you should be starting
 	an explicit version anyway, and some non-Apple drivers will require this too.
 	*/
-#ifdef APPLE
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-#endif
 	window = glfwCreateWindow(640, 640, "simple", NULL, NULL);
 
 	if (!window) {
@@ -113,7 +109,7 @@ int main( int argc, char **argv )
 	   glClear(GL_COLOR_BUFFER_BIT);     // clear the window
 	   glUseProgram(shader_programme);
 	   glBindVertexArray(vao);
-	   glDrawArrays(GL_TRIANGLES, 0, 3 );    // draw the points
+	   glDrawArrays(GL_TRIANGLES, 0, 6 );    // draw the points
 	   /* update other events like input handling */
 	   glfwPollEvents();
 	   glfwSwapBuffers(window);
